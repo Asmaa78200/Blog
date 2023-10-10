@@ -1,39 +1,40 @@
 const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const postSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            requied: [true, "title is required"],
+            required: [true, "Title is required"], // Corrected typo (requied -> required)
         },
         content: {
-            type : String,
-            required: [true, "content is required"],
+            type: String,
+            required: [true, "Content is required"],
         },
         postedBy: {
             type: ObjectId,
-            ref: "Use",
+            ref: "User",
         },
         image: {
             url: String,
-            public-id: String,
+            publicId: String, // Changed public-id to publicId
         },
         likes: [{
-            type: ObjectId, ref:"User"}],
+            type: ObjectId,
+            ref: "User",
+        }],
         comments: [
             {
                 text: String,
-                created: { type: Date, default: Date.now},
+                created: { type: Date, default: Date.now },
                 postedBy: {
                     type: ObjectId,
                     ref: "User",
                 },
             },
         ],
-
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
-modules.exports = mongoose.model('post',postSchema);
+module.exports = mongoose.model('Post', postSchema); // Corrected module.exports (modules -> module)
